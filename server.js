@@ -14,12 +14,17 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
+// ✅ Add this base route
+app.get('/', (req, res) => {
+  res.send('CourseHub Backend API is live!');
+});
+
 // API Routes
 app.use('/api/assessments', require('./routes/assessmentRoutes'));
 app.use('/api/feedback', require('./routes/feedbackRoutes'));
 app.use('/api/notifications', require('./routes/notificationRoutes'));
 app.use('/api/courses', require('./routes/courseRoutes'));
-app.use('/api/download-report', require('./routes/downloadReport')); // ✅ correct usage
+app.use('/api/download-report', require('./routes/downloadReport'));
 
 // Error Handler (always at bottom)
 app.use(errorHandler);
