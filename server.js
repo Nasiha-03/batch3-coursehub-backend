@@ -10,11 +10,23 @@ connectDB();
 
 const app = express();
 
+// ✅ Set CORS with allowed frontend domains
+const allowedOrigins = [
+  'https://batch3-coursehub-frontend.vercel.app',
+  'http://localhost:5173'
+];
+
+app.use(cors({
+  origin: allowedOrigins,
+  methods: ['GET', 'POST'],
+  allowedHeaders: ['Content-Type', 'Authorization'],
+  credentials: true
+}));
+
 // Middleware
-app.use(cors());
 app.use(express.json());
 
-// ✅ Add this base route
+// ✅ Base route for testing
 app.get('/', (req, res) => {
   res.send('CourseHub Backend API is live!');
 });
