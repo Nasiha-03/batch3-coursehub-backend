@@ -2,6 +2,8 @@ const express = require('express');
 const router = express.Router();
 const PDFDocument = require('pdfkit');
 const stream = require('stream');
+const downloadReportRoute = require('./routes/downloadReport');
+app.use('/api/download-report', downloadReportRoute);
 
 router.post('/', (req, res) => {
   const { name, subject, score, grade, date, generatedOn } = req.body;
